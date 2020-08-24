@@ -1,5 +1,5 @@
 {
-  "name": "red-contrib-diff",
+  "name": "node-red-contrib-diff",
   "version": "1.0.0",
   "description": "A simple node to create a difference between two strings",
   "main": "index.js",
