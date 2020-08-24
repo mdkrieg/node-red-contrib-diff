@@ -1,0 +1,28 @@
+{
+  "name": "red-contrib-diff",
+  "version": "1.0.0",
+  "description": "A simple node to create a difference between two strings",
+  "main": "index.js",
+  "author": "Jonas Bernemann",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NoFr1ends/node-red-contrib-diff/issues"
+  },
+  "homepage": "https://github.com/NoFr1ends/node-red-contrib-diff",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NoFr1ends/node-red-contrib-diff.git"
+  },
+  "keywords": [
+    "node-red",
+    "diff"
+  ],
+  "node-red": {
+    "nodes": {
+      "diff": "diff.js"
+    }
+  },
+  "dependencies": {
+    "diff": "^4.0.2"
+  }
+}
