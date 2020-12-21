@@ -1,17 +1,16 @@
 <script type="text/javascript">
+    const validTypes = ['str','msg','flow','global','jsonata','env'];
     RED.nodes.registerType('diff',{
         category: 'output',
         color: 'pink',
         defaults: {
             name:{value: ""},
-            old_filename:{value: "", required: true},
-            old_filename_type: {value: 'str'},
-            new_filename:{value: "", required: true},
-            new_filename_type: {value: 'str'},
-            old_content:{value: "", required: true},
-            old_content_type: {value: 'str'},
-            new_content:{value: "", required: true},
-            new_content_type: {value: 'str'},
+            oldObj: {value:"payload[0]", required:true, validate: RED.validators.typedInput("propertyType")},
+            oldObjType: { value:"msg" },
+            newObj: {value:"payload[1]", required:true, validate: RED.validators.typedInput("propertyType")},
+            newObjType: { value:"msg" },
+            optionsObj: {value:"options", required:true, validate: RED.validators.typedInput("propertyType")},
+            optionsObjType: { value:"msg" },
             output:{value: "payload"},
             context:{value: "0"},
         },
@@ -19,43 +18,18 @@
         outputs: 1,
         icon: "file.png",
         label: function() {
-            return this.name||"Difference";
+            return this.name||"Diff";
         },
         oneditprepare: function() {
-            if (!this.old_filename_type) {
-                this.old_filename_type = 'str';
-            }
             $("#node-input-old_filename").typedInput({
                 default: 'str',
-                types: ['str','msg','flow','global','env'],
-                typeField: $("#node-input-old_filename_type")
+                types: validTypes,
+                typeField: $("#node-input-old_obj")
             });
-
-            if (!this.new_filename_type) {
-                this.new_filename_type = 'str';
-            }
             $("#node-input-new_filename").typedInput({
                 default: 'str',
-                types: ['str','msg','flow','global','env'],
+                types: validTypes,
                 typeField: $("#node-input-new_filename_type")
-            });
-
-            if (!this.old_content_type) {
-                this.old_content_type = 'str';
-            }
-            $("#node-input-old_content").typedInput({
-                default: 'str',
-                types: ['str','msg','flow','global','env'],
-                typeField: $("#node-input-old_content_type")
-            });
-
-            if (!this.new_content_type) {
-                this.new_content_type = 'str';
-            }
-            $("#node-input-new_content").typedInput({
-                default: 'str',
-                types: ['str','msg','flow','global','env'],
-                typeField: $("#node-input-new_content_type")
             });
         }
     });
